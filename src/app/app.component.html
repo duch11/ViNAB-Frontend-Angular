@@ -1,12 +1,20 @@
-<nav *ngIf="currentUser">
-  <div>
+<!-- Image and text -->
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Vinab</a>
+  <div *ngIf="currentUser">
     <a [routerLink]="[ '/' ]" routerLinkActive="current">Overview</a>
     <a [routerLink]="[ '/preferences' ]" routerLinkActive="current">preferences</a>
     <a (click)="logout()">log out</a>
   </div>
 </nav>
-<mat-toolbar>
-  <span style="margin-left: 50%">My Application</span>
-</mat-toolbar>
+<div class="container">
 
-<router-outlet></router-outlet>
+    <app-login-page></app-login-page>
+
+    <app-register-user></app-register-user>
+
+    <router-outlet></router-outlet>
+
+</div>
+
+
