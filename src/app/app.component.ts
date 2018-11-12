@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ViNAB-Frontend-Angular';
+  currentUser = 'ViNAB-Frontend-Angular';
+
+  // temporary code for alert
+  alert = true;
+  close(): void {
+    this.alert = false;
+  }
 }

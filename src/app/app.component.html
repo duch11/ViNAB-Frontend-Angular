@@ -2,18 +2,21 @@
 <nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Vinab</a>
   <div *ngIf="currentUser">
-    <a [routerLink]="[ '/' ]" routerLinkActive="current">Overview</a>
-    <a [routerLink]="[ '/preferences' ]" routerLinkActive="current">preferences</a>
-    <a (click)="logout()">log out</a>
+    <a class="btn" [routerLink]="[ '/' ]" routerLinkActive="current">Overview</a>
+    <a class="btn" [routerLink]="[ '/preferences' ]" routerLinkActive="current">preferences</a>
+    <a class="btn" (click)="logout()">log out</a>
   </div>
 </nav>
 <div class="container">
+    <ngb-alert *ngIf="alert" type="primary" [dismissible]="true" (close)="close()">Alert tester!</ngb-alert>
 
     <app-login-page></app-login-page>
 
     <app-register-user></app-register-user>
 
     <router-outlet></router-outlet>
+
+    <app-dashboard></app-dashboard>
 
 </div>
 
