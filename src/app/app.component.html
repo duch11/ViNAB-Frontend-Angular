@@ -10,13 +10,19 @@
 <div class="container">
     <ngb-alert *ngIf="alert" type="primary" [dismissible]="true" (close)="close()">Alert tester!</ngb-alert>
 
-    <app-login-page></app-login-page>
-
-    <app-register-user></app-register-user>
-
-    <router-outlet></router-outlet>
-
-    <app-dashboard></app-dashboard>
+    <div class="row">
+      <app-login-page class="col-12"></app-login-page>
+    </div>
+    <div class="row">
+      <app-register-user class="col-12"></app-register-user>
+    </div>
+    <div class="row">
+      <router-outlet class="col-12"></router-outlet>
+    </div>
+    <div class="row">
+      <app-dashboard class="col-12"></app-dashboard>
+    </div>
+    <div class="row"></div>
 
 </div>
 
