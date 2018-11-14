@@ -1,25 +1,54 @@
+<h1 class="display-2 text-center">Dankort</h1>
+
 <form>
 
   <div class="form-row">
-    <div class="form-group col-lg-4 offset-lg-2">
+    <div class="form-group col-lg-6 offset-lg-3">
       <label for="accountname" class="col-sm-form-label">Account name</label>
       <input type="text" class="form-control" name="accountname" id="accountname" placeholder="insert accountname">
+      <small id="helpId" class="form-text text-muted">It can be anything you like! :)</small>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-lg-6 offset-lg-3 form-group">
+      <label for="lastsyncdate">Latest sync date</label>
+      <input type="date" class="form-control" name="lastsyncdate" id="lastsyncdate" aria-describedby="#date-help-text" placeholder="">
+      <small id="date-help-text" class="form-text text-muted">Change the date to manually resync</small>
     </div>
   </div>
 
   <div class="form-row">
-    <div class="col-lg-4 offset-lg-2 form-group">
-        <label for="" class="col-sm-form-label">Account name</label>
-      <button type="submit" class="btn btn-lg btn-block btn-warning">Connect to bank account</button>
+
+    <div class="form-group col-lg-6 offset-lg-3">
+      <label class="col-sm-form-label">
+        Bank connection
+      </label>
+      <div class="card">
+        <div class="card-body">
+          <p>Arbejdernes Landsbank</p>
+          <p>Dankort ***324</p>
+          <button type="submit" class="btn btn-lg btn-block btn-warning">Edit bank connection</button>
+        </div>
+      </div>
     </div>
-    <div class="col-lg-4 form-group">
-        <label for="" class="col-sm-form-label">Account name</label>
-      <button type="submit" class="btn btn-lg btn-block btn-primary">Connect to YNAB account</button>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-lg-6 offset-lg-3">
+      <label class="col-sm-form-label">
+          YNAB connection
+      </label>
+      <div class="card">
+        <div class="card-body">
+          <h3>jonah-holmes@gmail.com</h3>
+          <h3>Dansk budget - Dankort</h3>
+          <button type="submit" class="btn btn-lg btn-block btn-primary">Edit YNAB connection</button>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="form-row">
-    <div class="form-group col-lg-8 offset-lg-2">
+    <div class="form-group col-lg-6 offset-lg-3">
       <button type="submit" class="btn btn-lg btn-block btn-success">Save</button>
     </div>
   </div>
