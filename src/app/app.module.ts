@@ -11,6 +11,7 @@ import { RegisterUserComponent } from './register-user/register-user.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AccountsListComponent } from './accounts-list/accounts-list.component';
 import { AccountCardComponent } from './account-card/account-card.component';
+import { AddAccountCardComponent } from './add-account-card/add-account-card.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AccountCardComponent } from './account-card/account-card.component';
     RegisterUserComponent,
     DashboardComponent,
     AccountsListComponent,
-    AccountCardComponent
+    AccountCardComponent,
+    AddAccountCardComponent
   ],
   imports: [
     BrowserModule,
