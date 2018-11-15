@@ -15,6 +15,7 @@ import { AccountDetailsComponent } from './pages/account-details/account-details
 import { AccountsListComponent } from './components/accounts-list/accounts-list.component';
 import { AccountCardComponent } from './components/account-card/account-card.component';
 import { AddAccountCardComponent } from './components/add-account-card/add-account-card.component';
+import { FormsModule } from "@angular/forms";
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { AddAccountCardComponent } from './components/add-account-card/add-accou
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     NgbModule.forRoot()
   ],
   providers: [],

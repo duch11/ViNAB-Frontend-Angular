@@ -1,17 +1,19 @@
 <div>
   <h1 class="display-1 text-center mt-5">Register user</h1>
-
+  <h1>{{user.toString()}}</h1>
   <form>
 
     <div class="form-row">
       <div class="form-group col-lg-4 offset-lg-2">
         <label for="firstname" class="col-sm-form-label">First Name</label>
-        <input type="text" class="form-control" name="firstname" id="firstname" placeholder="insert firstname">
+        <input [(ngModel)]="user.firstname" type="text" class="form-control" name="firstname" id="firstname" placeholder="insert firstname">
       </div>
 
       <div class="form-group col-lg-4">
+        <!-- <p>{{user.lastname}}</p> -->
         <label for="lastname" class="col-sm-form-label">Last Name</label>
-        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="insert lastname">
+        <input [(ngModel)]="user.lastname" type="text" class="form-control" name="lastname" id="lastname" placeholder="insert lastname">
+
       </div>
     </div>
 
@@ -19,25 +21,26 @@
     <div class="form-row">
       <div class="form-group col-lg-4 offset-lg-2">
         <label for="email" class="col-sm-form-label">Email</label>
-        <input type="email" class="form-control" name="email" id="email" placeholder="insert email">
+        <input [(ngModel)]="user.email" type="email" class="form-control" name="email" id="email" placeholder="insert email">
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-lg-4 offset-lg-2">
         <label for="password" class="col-sm-form-label">Password</label>
-        <input type="password" class="form-control" name="password" id="password" placeholder="insert password">
+        <input [(ngModel)]="user.password" type="password" class="form-control" name="password" id="password" placeholder="insert password">
       </div>
       <div class="form-group col-lg-4">
         <label for="password-repeat" class="col-sm-form-label">Repeat password</label>
-        <input type="password" class="form-control" name="password-repeat" id="password-repeat" placeholder="repeat password">
+        <input [(ngModel)]="passwordcheck" type="password" class="form-control" name="password-repeat" id="password-repeat" placeholder="repeat password">
       </div>
     </div>
 
 
     <div class="form-row">
       <div class="form-group col-lg-8 offset-lg-2">
-        <button type="submit" class="btn btn-lg btn-block btn-primary">Register</button>
+        <button *ngIf="formIsValid()" type="submit" class="btn btn-lg btn-block btn-primary">Register</button>
+        <button *ngIf="!formIsValid()" type="submit" class="btn btn-lg btn-block disabled">Wrong password</button>
       </div>
     </div>
 
