@@ -1,8 +1,9 @@
-<div class="container">
-    <h1 class="display-1 text-center">ViNAB</h1>
+<div>
+  <div class="text-center my-5">
+    <img src="../../assets/ViNABLogo.png" class="img-fluid mx-auto" alt="">
+  </div>
 
   <form>
-
     <div class="form-group row">
       <div class="col-lg-6 offset-lg-3">
         <label for="e-mail" class="col-lg-1-12 col-form-label">Email</label>
@@ -23,13 +24,12 @@
         <button type="submit" class="btn btn-lg btn-block btn-success">Login</button>
       </div>
     </div>
-
   </form>
 
   <div class="form-group row">
     <div class="col-lg-6 offset-lg-3">
         <p>Not a user?</p>
-        <a name="" id="" class=" btn btn-lg btn-secondary btn-block" href="/register" role="button">Register</a>
+        <a [routerLink]="[ '/register' ]" routerLinkActive="current" name="register-btn" id="register-btn" class="btn btn-lg btn-secondary btn-block" role="button">Register</a>
     </div>
   </div>
 

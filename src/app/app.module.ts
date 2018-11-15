@@ -6,13 +6,16 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { RegisterUserComponent } from './register-user/register-user.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AccountsListComponent } from './accounts-list/accounts-list.component';
-import { AccountCardComponent } from './account-card/account-card.component';
-import { AddAccountCardComponent } from './add-account-card/add-account-card.component';
-import { AccountDetailsComponent } from './account-details/account-details.component';
+// pages
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { RegisterUserComponent } from './pages/register-user/register-user.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { AccountDetailsComponent } from './pages/account-details/account-details.component';
+// components
+import { AccountsListComponent } from './components/accounts-list/accounts-list.component';
+import { AccountCardComponent } from './components/account-card/account-card.component';
+import { AddAccountCardComponent } from './components/add-account-card/add-account-card.component';
+
 
 @NgModule({
   declarations: [

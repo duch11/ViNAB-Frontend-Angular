@@ -1,14 +1,27 @@
 <!-- Image and text -->
-<nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Vinab</a>
-  <div *ngIf="currentUser">
-    <a class="btn" [routerLink]="[ '/' ]" routerLinkActive="current">Overview</a>
-    <a class="btn" [routerLink]="[ '/preferences' ]" routerLinkActive="current">preferences</a>
-    <a class="btn" (click)="logout()">log out</a>
-  </div>
+<nav class="navbar navbar-expand navbar-dark bg-dark shadow justify-content-center">
+  <a class="navbar-brand" [routerLink]="[ '/' ]">Vinab</a>
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="[ '/' ]" routerLinkActive="current">login</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="[ '/dashboard' ]" routerLinkActive="current">dashboard</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="[ '/details' ]" routerLinkActive="current">details</a>
+    </li>
+
+  </ul>
 </nav>
+
+
 <div class="container">
-    <ngb-alert *ngIf="alert" type="primary" [dismissible]="true" (close)="close()">Alert tester!</ngb-alert>
+  <router-outlet></router-outlet>
+</div>
+<!--
+      <ngb-alert *ngIf="alert" type="primary" [dismissible]="true" (close)="close()">Alert tester!</ngb-alert>
 
     <div class="row">
       <app-login-page class="col-12"></app-login-page>
@@ -17,7 +30,7 @@
       <app-register-user class="col-12"></app-register-user>
     </div>
     <div class="row">
-      <router-outlet class="col-12"></router-outlet>
+
     </div>
     <div class="row">
       <app-dashboard class="col-12"></app-dashboard>
@@ -26,6 +39,5 @@
       <app-account-details class="col-12"></app-account-details>
     </div>
 
-</div>
-
+-->
 
