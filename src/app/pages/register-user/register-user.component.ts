@@ -24,7 +24,7 @@ export class RegisterUserComponent implements OnInit {
 
   formIsValid(): boolean {
     this.validForm = false;
-    if (this.user.password === this.passwordcheck) {
+    if (this.user.password === this.passwordcheck && this.passwordcheck !== "") {
       this.validForm = true;
     }
 
