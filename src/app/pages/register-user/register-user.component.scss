@@ -1,0 +1,10 @@
+@import "../../../../node_modules/bootstrap/scss/bootstrap.scss";
+a, a:hover{
+    color:#333
+  }
+
+@include media-breakpoint-up(sm) {
+  form.col-12 {
+    max-width: 540px;
+  }
+}

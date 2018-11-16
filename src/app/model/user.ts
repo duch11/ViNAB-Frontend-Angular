@@ -2,8 +2,7 @@ import { SyncPairAccount } from "./sync-pair-account";
 export class User {
     id: number;
     email: string;
-    firstname: string;
-    lastname: string;
+    name: string;
     password: string;
 
     sync_pairs: SyncPairAccount[];
@@ -11,13 +10,12 @@ export class User {
 
         this.id = 0;
         this.email = "";
-        this.firstname = "";
-        this.lastname = "";
+        this.name = "";
         this.password = "";
         this.sync_pairs = [];
     }
 
     toString(): string {
-        return this.id + this.email + this.firstname + this.lastname + this.password + this.sync_pairs;
+        return this.id + this.email + this.name + this.password + this.sync_pairs;
     }
 }

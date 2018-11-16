@@ -10,26 +10,13 @@ import { NgModel } from "@angular/forms";
 
 export class RegisterUserComponent implements OnInit {
   @Input() user: User;
-  @Input() passwordcheck: string;
-
-  validForm: boolean;
-
 
   constructor() { }
 
   ngOnInit() {
     this.user = new User();
-    this.passwordcheck = "";
   }
 
-  formIsValid(): boolean {
-    this.validForm = false;
-    if (this.user.password === this.passwordcheck && this.passwordcheck !== "") {
-      this.validForm = true;
-    }
 
-    return this.validForm;
-
-  }
 
 }
