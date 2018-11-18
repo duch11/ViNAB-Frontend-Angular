@@ -13,7 +13,6 @@ export class UserService {
     if (!this.isEmailValid(user.email)) {
       this.errorService.tellError("email \"" + user.email + "\" not valid!");
     }
-
   }
 
   isEmailValid(email: string): boolean {

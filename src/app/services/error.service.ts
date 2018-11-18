@@ -4,15 +4,14 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ErrorService {
-  error: string;
+  errors: string[];
   hasUnread: boolean;
 
   constructor() { }
 
   tellError(errorMessage: string) {
     console.log(errorMessage);
-    this.error = errorMessage;
+    this.errors.push(errorMessage);
   }
-
 
 }
