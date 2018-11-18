@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ErrorService } from "src/app/services/error.service";
-import { forEach } from "@angular/router/src/utils/collection";
-
-interface Alert {
-  type: string;
-  message: string;
-}
+import { Observable, of } from 'rxjs';
+import { Alert } from '../../model/alert.interface';
 
 @Component({
   selector: 'app-alert',
@@ -14,19 +10,19 @@ interface Alert {
 })
 export class AlertComponent implements OnInit {
 
+  alertsMap: Map<String, Alert>;
   alerts: Alert[];
 
-  constructor(private errorService: ErrorService) {
+  constructor(public errorService: ErrorService) {
   }
 
   close(alert: Alert) {
-    this.alerts.splice(this.alerts.indexOf(alert), 1);
+    this.errorService.clearError(alert);
   }
 
   ngOnInit() {
-    for (const error of this.errorService.errors) {
-      this.alerts.push({type: 'string', message: error});
-    }
+    this.errorService.getErrors()
+      .subscribe(errors => (this.alerts = errors));
   }
 
 }

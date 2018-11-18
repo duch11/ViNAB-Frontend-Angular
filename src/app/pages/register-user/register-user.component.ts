@@ -23,8 +23,7 @@ export class RegisterUserComponent implements OnInit {
 
 
   constructor(
-    private userService: UserService,
-    private errorService: ErrorService
+    private userService: UserService
     ) { }
 
   ngOnInit() {

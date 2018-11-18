@@ -8,15 +8,13 @@ import { ErrorService } from "./services/error.service";
 })
 export class AppComponent {
 
-  constructor(errorService: ErrorService) {
+  constructor(public errorService: ErrorService) {
 
   }
   currentUser = 'ViNAB-Frontend-Angular';
 
   // temporary code for alert
   alert: boolean;
-
-
 
   close(): void {
     this.alert = false;
