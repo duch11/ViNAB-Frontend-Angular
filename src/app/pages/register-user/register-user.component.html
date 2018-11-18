@@ -2,7 +2,6 @@
   <h1 class="display-1 text-center my-5">Register user</h1>
 </div>
 <div class="row justify-content-center">
-  <!-- <h1>{{user.toString()}}</h1> -->
   <form class="col-12">
 
 
@@ -24,9 +23,9 @@
       <div class="form-group">
         <label for="password" class="col-sm-form-label">Password:</label>
         <div class="input-group">
-          <input [(ngModel)]="user.password" type="password" class="form-control" name="password" id="password" placeholder="insert password">
+          <input [(ngModel)]="user.password" [type]="property_type_password" type="password" class="form-control" name="password" id="password" placeholder="insert password">
           <div class="input-group-append">
-              <a class="input-group-text" href="/"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+              <a class="input-group-text" (click)="togglePassword()"><i [class]="property_class_eye" aria-hidden="true"></i></a>
           </div>
         </div>
       </div>
@@ -35,7 +34,7 @@
 
 
       <div class="form-group">
-        <button type="submit" class="btn btn-lg btn-block btn-primary">Register</button>
+        <button (click)="registerUser()" class="btn btn-lg btn-block btn-primary">Register</button>
       </div>
 
 

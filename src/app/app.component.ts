@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ErrorService } from "./services/error.service";
 
 @Component({
   selector: 'app-root',
@@ -6,10 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  constructor(errorService: ErrorService) {
+
+  }
   currentUser = 'ViNAB-Frontend-Angular';
 
   // temporary code for alert
-  alert = true;
+  alert: boolean;
+
+
+
   close(): void {
     this.alert = false;
   }
