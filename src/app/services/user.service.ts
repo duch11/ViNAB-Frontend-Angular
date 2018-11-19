@@ -26,6 +26,12 @@ const NAME_INVALID: Alert = { type: ERROR_TYPE_WARNING,
 const USER_CREATED: Alert = { type: ERROR_TYPE_SUCCESS,
   message: "User created!" };
 
+const LOGIN_INVALID: Alert = { type: ERROR_TYPE_DANGER,
+  message: "Wrong Email or password. try my@email.com and 123456" };
+
+const LOGIN_VALID: Alert = { type: ERROR_TYPE_SUCCESS,
+message: "Welcome, you've been logged in!" };
+
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +39,21 @@ const USER_CREATED: Alert = { type: ERROR_TYPE_SUCCESS,
 export class UserService {
 
   constructor(private errorService: ErrorService) { }
+
+  login(user: User): boolean {
+    return this.loginConfirmed(user);
+  }
+
+  private loginConfirmed(user: User): boolean {
+    if (user.email === "my@email.com" && user.password === "123456") {
+      this.errorService.clearError(LOGIN_INVALID);
+      this.errorService.tellError(LOGIN_VALID);
+      return true;
+    }
+    this.errorService.tellError(LOGIN_INVALID);
+
+    return false;
+  }
 
   addUser(user: User): boolean {
     if (!this.isUserValid(user)) {
