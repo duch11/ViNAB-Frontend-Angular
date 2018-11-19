@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
+
 import { User } from "src/app/model/user";
-import { NgModel } from "@angular/forms";
 import { UserService } from "src/app/services/user.service";
-import { ErrorService } from "src/app/services/error.service";
 
 
 
@@ -23,7 +24,8 @@ export class RegisterUserComponent implements OnInit {
 
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
     ) { }
 
   ngOnInit() {
@@ -45,7 +47,10 @@ export class RegisterUserComponent implements OnInit {
 
   // submit button
   registerUser() {
-    this.userService.addUser(this.user);
+    if (this.userService.addUser(this.user)) {
+      this.router.navigate(["/"]);
+    }
+
   }
 
 }

@@ -1,7 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Alert } from '../model/alert.interface';
-import { Alert } from "selenium-webdriver";
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +11,23 @@ export class ErrorService {
   constructor() {
   }
 
-  tellError(errorMessage: string) {
-    console.log(errorMessage);
-    if(!this.errors.find(x => x.message === errorMessage)){
-      this.errors.push({type: "warning", message: errorMessage});
+  tellError(error: Alert) {
+    if (!this.errorExists(error)) {
+      this.errors.push(error);
     }
   }
 
+  private errorExists(error: Alert): boolean {
+    if (this.errors.find(x => x.message === error.message)) {
+      return true;
+    }
+    return false;
+  }
+
   clearError(error: Alert) {
-    this.errors.splice(this.errors.indexOf(error));
+    if (this.errorExists(error)) {
+      this.errors.splice(this.errors.indexOf(error), 1);
+    }
   }
 
   getErrors(): Observable<Alert[]> {

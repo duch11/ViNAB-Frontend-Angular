@@ -10,7 +10,6 @@ import { Alert } from '../../model/alert.interface';
 })
 export class AlertComponent implements OnInit {
 
-  alertsMap: Map<String, Alert>;
   alerts: Alert[];
 
   constructor(public errorService: ErrorService) {
