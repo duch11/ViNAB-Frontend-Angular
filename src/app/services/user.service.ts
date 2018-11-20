@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from "../model/user";
 import { ErrorService } from "./error.service";
 import { Alert } from "../model/alert.interface";
+import { TESTUSERS } from "../model/test-users";
 
 const ERROR_TYPE_SUCCESS = "success";
 const ERROR_TYPE_WARNING = "warning";
@@ -39,6 +40,14 @@ message: "Welcome, you've been logged in!" };
 export class UserService {
 
   constructor(private errorService: ErrorService) { }
+
+  getUser(id: number): User {
+    const user = TESTUSERS.find(t => t.id === id);
+    if (user) {
+      return user;
+    }
+    return new User();
+  }
 
   login(user: User): boolean {
     return this.loginConfirmed(user);
