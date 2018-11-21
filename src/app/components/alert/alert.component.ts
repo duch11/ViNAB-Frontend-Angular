@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ErrorService } from "src/app/services/error.service";
+import { ErrorService } from "src/app/services/error/error.service";
 import { Observable, of } from 'rxjs';
 import { Alert } from '../../model/alert.interface';
 

@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Alert } from '../model/alert.interface';
+import { Alert } from '../../model/alert.interface';
 
 @Injectable({
   providedIn: 'root'

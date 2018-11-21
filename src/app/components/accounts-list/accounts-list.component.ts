@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from "src/app/services/user.service";
+import { Component, OnInit, Input } from '@angular/core';
 import { SyncPairAccount } from "src/app/model/sync-pair-account";
 
 @Component({
@@ -9,12 +8,12 @@ import { SyncPairAccount } from "src/app/model/sync-pair-account";
 })
 export class AccountsListComponent implements OnInit {
 
-  currentUserAccounts: SyncPairAccount[];
-  constructor(private userservice: UserService) { }
+  @Input() sp_accounts: SyncPairAccount[];
 
-  ngOnInit() {
-    // not working
-    this.currentUserAccounts = this.userservice.getUser(1).sync_pairs;
+  constructor(){ }
+
+  ngOnInit(){
+
   }
 
 }

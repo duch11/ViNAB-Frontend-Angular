@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { User } from "../model/user";
-import { ErrorService } from "./error.service";
-import { Alert } from "../model/alert.interface";
-import { TESTUSERS } from "../model/test-users";
+import { User } from "../../model/user";
+import { ErrorService } from "../error/error.service";
+import { Alert } from "../../model/alert.interface";
+import { TESTUSERS } from "../../model/test-users";
+import { Observable, of } from 'rxjs';
+import { SyncPairAccount } from "../../model/sync-pair-account";
 
 const ERROR_TYPE_SUCCESS = "success";
 const ERROR_TYPE_WARNING = "warning";
@@ -42,12 +44,15 @@ export class UserService {
   constructor(private errorService: ErrorService) { }
 
   getUser(id: number): User {
-    const user = TESTUSERS.find(t => t.id === id);
-
+    const user = TESTUSERS.find(tu => tu.id === id);
     if (user) {
       return user;
     }
     return new User();
+  }
+
+  getSyncAccountsByUserID(id: number): Observable<SyncPairAccount[]> {
+    return of(this.getUser(id).sync_pairs);
   }
 
   login(user: User): boolean {
