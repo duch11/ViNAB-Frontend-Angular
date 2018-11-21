@@ -15,9 +15,9 @@ const BANKACCOUNTS: BankAccount[] = [
     new BankAccount("my bank account 3", "BMO 3", "Mastercard Black 3")
 ];
 const SYNCACCOUNTS: SyncPairAccount[] = [
-    new SyncPairAccount(YNABACCOUNTS[1], BANKACCOUNTS[1], "today 1"),
-    new SyncPairAccount(YNABACCOUNTS[2], BANKACCOUNTS[2], "today 2"),
-    new SyncPairAccount(YNABACCOUNTS[3], BANKACCOUNTS[3], "today 3")
+    new SyncPairAccount(YNABACCOUNTS[1], BANKACCOUNTS[1], "today 1", "My lovely budget 1"),
+    new SyncPairAccount(YNABACCOUNTS[2], BANKACCOUNTS[2], "today 2", "My lovely budget 2"),
+    new SyncPairAccount(YNABACCOUNTS[3], BANKACCOUNTS[3], "today 3", "My lovely budget 3")
 ];
 export const TESTUSERS: User[] = [
     {id: 1, email: "my@email.com", name: "me my", password: "123", sync_pairs: [SYNCACCOUNTS[1]]},

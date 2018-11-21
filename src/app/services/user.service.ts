@@ -43,6 +43,7 @@ export class UserService {
 
   getUser(id: number): User {
     const user = TESTUSERS.find(t => t.id === id);
+
     if (user) {
       return user;
     }

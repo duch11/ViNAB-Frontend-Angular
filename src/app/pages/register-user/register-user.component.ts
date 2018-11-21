@@ -17,7 +17,7 @@ const hide_pw     = "password";
   styleUrls: ['./register-user.component.scss']
 })
 export class RegisterUserComponent implements OnInit {
-  @Input() user: User;
+  user: User;
 
   property_type_password: string;
   property_class_eye: string;
