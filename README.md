@@ -3,11 +3,11 @@
 # TODO:
 ## Backend
   - LOGIN
-    POST /user/login (use session cookie)
+    - POST /user/login (use session cookie)
         Body: {email, password}
         Response: Yay: {session-cookie} Nay: {error??}
 
-    ### CRUD
+  - CRUD
     - Create:
         - POST /user/create
             Body: {email, name, password}
