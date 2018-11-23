@@ -1,6 +1,10 @@
+
+
+
+
 <ul class="list-group border-0">
-    <li *ngFor="let sp_account of sp_accounts" class="list-group-item border-0 px-0">
-        <app-account-card [syncAccount]="sp_account"></app-account-card>
+    <li *ngFor="let account of accounts" class="list-group-item border-0 px-0">
+        <app-account-card [account]="account"></app-account-card>
     </li>
     <!--<li class="list-group-item border-0 px-0"><app-account-card></app-account-card></li>-->
     <li class="list-group-item border-0 px-0"><app-add-account-card></app-add-account-card></li>

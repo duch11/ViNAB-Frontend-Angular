@@ -1,14 +1,13 @@
 <div class="card shadow">
   <form class="card-body align-middle">
-    <h3 class="card-title display-4">{{syncAccount.nickname}}</h3>
+    <h3 class="card-title display-4">{{account.nickName}}</h3>
   </form>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">
-
-      <h4 class="pl-4 font-weight-light">{{syncAccount.bankAccount.bankname + " - " + syncAccount.bankAccount.accountname}}</h4>
+      <h4 class="pl-4 font-weight-light">{{account.bank.bankName + " - " + account.bank.accountName}}</h4>
     </li>
     <li class="list-group-item">
-      <h4 class="pl-4 font-weight-light">{{syncAccount.ynabAccount.budgetName + " - " + syncAccount.ynabAccount.budgetAccountName}}</h4>
+      <h4 class="pl-4 font-weight-light">{{account.budget.budgetName + " - " + account.budget.accountName}}</h4>
     </li>
   </ul>
   <div class="card-body  d-flex justify-content-between">

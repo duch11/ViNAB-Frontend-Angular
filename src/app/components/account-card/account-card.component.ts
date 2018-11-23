@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SyncPairAccount } from "src/app/model/sync-pair-account";
+import { Account } from "src/app/model/account";
 import { UserService } from "src/app/services/user/user.service";
 import { AccountService } from "src/app/services/account/account.service";
 
@@ -10,7 +10,7 @@ import { AccountService } from "src/app/services/account/account.service";
 })
 export class AccountCardComponent implements OnInit {
 
-  @Input() syncAccount: SyncPairAccount;
+  @Input() account: Account;
   constructor(private accountservice: AccountService) { }
 
   ngOnInit() {
@@ -18,11 +18,11 @@ export class AccountCardComponent implements OnInit {
   }
 
   edit() {
-    this.accountservice.edit(this.syncAccount.getId());
+    this.accountservice.edit(this.account.getId());
   }
 
   delete() {
-    this.accountservice.remove(this.syncAccount.getId());
+    this.accountservice.remove(this.account.getId());
   }
 
 }

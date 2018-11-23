@@ -10,12 +10,12 @@ import { Router } from "@angular/router";
 })
 export class LoginPageComponent implements OnInit {
 
-  @Input() user: User;
+  user: User;
   constructor(private userService: UserService,
   private router: Router) { }
 
   ngOnInit() {
-    this.user = new User();
+    this.user = new User("","","","");
   }
 
   requestLogin() {
