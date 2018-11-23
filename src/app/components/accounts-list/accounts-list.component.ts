@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SyncPairAccount } from "src/app/model/sync-pair-account";
+import { Account } from "src/app/model/account";
 
 @Component({
   selector: 'app-accounts-list',
@@ -8,7 +8,7 @@ import { SyncPairAccount } from "src/app/model/sync-pair-account";
 })
 export class AccountsListComponent implements OnInit {
 
-  @Input() sp_accounts: SyncPairAccount[];
+  @Input() accounts: Account[];
 
   constructor(){ }
 

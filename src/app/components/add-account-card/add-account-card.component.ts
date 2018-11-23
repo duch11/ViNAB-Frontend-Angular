@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { AccountService } from "src/app/services/account/account.service";
+import { User } from "src/app/model/user";
 
 @Component({
   selector: 'app-add-account-card',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddAccountCardComponent implements OnInit {
 
-  constructor() { }
+  @Input() user: User;
+
+  constructor(private accountService: AccountService) { }
 
   ngOnInit() {
+  }
+
+  addAccount() {
+    this.accountService.createAccount("1");
   }
 
 }

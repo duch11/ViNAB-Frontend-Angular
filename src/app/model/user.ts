@@ -1,24 +1,24 @@
-import { SyncPairAccount } from "./sync-pair-account";
-import { YnabAccount } from "./ynab-account";
-import { BankAccount } from "./bank-account";
+import { Account } from "./account";
+import { BudgetAccount } from "./budgetAccount";
+import { BankAccount } from "./bankAccount";
 export class User {
-    id: number;
+    private id: string;
     email: string;
     name: string;
     password: string;
 
-    sync_pairs: SyncPairAccount[];
-    constructor() {
-
-
-        this.id = 0;
+    constructor(id: string, email: string, name: string, password: string) {
+        this.id = id;
         this.email = "";
         this.name = "";
         this.password = "";
-        this.sync_pairs = [];
+    }
+
+    getID(): string {
+        return this.id;
     }
 
     toString(): string {
-        return this.id + this.email + this.name + this.password + this.sync_pairs;
+        return this.id + this.email + this.name + this.password;
     }
 }

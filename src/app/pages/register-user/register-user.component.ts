@@ -18,7 +18,6 @@ const hide_pw     = "password";
 })
 export class RegisterUserComponent implements OnInit {
   user: User;
-
   property_type_password: string;
   property_class_eye: string;
 
@@ -29,7 +28,7 @@ export class RegisterUserComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.user = new User();
+    this.user = new User("", "", "", "");
     this.property_type_password     = hide_pw;
     this.property_class_eye         = closed_eye;
   }
