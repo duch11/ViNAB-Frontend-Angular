@@ -39,11 +39,11 @@
                     Nay: {null or error?}
 
     - Delete:
-        DELETE /account/delete/
+        - DELETE /account/delete/
             Body: {account object}, {user-session-cookie}
             Response: 	Yay: {JSON with accounts?}
                     Nay: {null or error?}
-        DELETE /user/delete/
+        - DELETE /user/delete/
 
 
 - Frontend
