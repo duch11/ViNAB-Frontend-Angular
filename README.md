@@ -16,7 +16,7 @@
 
         - POST /account/create
             Body: {user-session-cookie}
-            Response: 	Yay: {JSON with accounts?}
+            Response: 	Yay: {JSON with created account?}
                     Nay: {null or error?}
 
     - Read:
@@ -31,11 +31,11 @@
     - Update:
         - POST /account/update/
             Body: {account object}, {user-session-cookie}
-            Response: 	Yay: {JSON with accounts?}
+            Response: 	Yay: {JSON with updated account?}
                     Nay: {null or error?}
         - POST /user/update/
             Body: {account object}, {user-session-cookie}
-            Response: 	Yay: {JSON with accounts?}
+            Response: 	Yay: {JSON with user?}
                     Nay: {null or error?}
 
     - Delete:
