@@ -9,31 +9,31 @@
 
     ### CRUD
     - Create:
-        POST /user/create
+        - POST /user/create
             Body: {email, name, password}
             Response: 	Yay: {"user created"}
                     Nay: {"error message??"}
 
-        POST /account/create
+        - POST /account/create
             Body: {user-session-cookie}
             Response: 	Yay: {JSON with accounts?}
                     Nay: {null or error?}
 
     - Read:
-        GET /account/readall/
+        - GET /account/readall/
             Body: {user-session-cookie}
             Response: 	Yay: {JSON with accounts?}
                     Nay: {null or error?}
-        GET /user/readall/
+        - GET /user/readall/
             Body: {user-session-cookie}
             Response: 	Yay: {JSON with users}
                     Nay: {null or error?}
     - Update:
-        POST /account/update/
+        - POST /account/update/
             Body: {account object}, {user-session-cookie}
             Response: 	Yay: {JSON with accounts?}
                     Nay: {null or error?}
-        POST /user/update/
+        - POST /user/update/
             Body: {account object}, {user-session-cookie}
             Response: 	Yay: {JSON with accounts?}
                     Nay: {null or error?}
