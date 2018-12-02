@@ -5,8 +5,10 @@ import { Alert } from "../../model/alert.interface";
 import { TESTUSERS } from "../../model/test-data";
 import { Observable, of, Subject } from 'rxjs';
 import { Account } from "../../model/account";
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+
 import { environment } from "../../../environments/environment";
+import { HttpClient } from "@angular/common/http";
+
 
 const ERROR_TYPE_SUCCESS = "success";
 const ERROR_TYPE_WARNING = "warning";
@@ -43,57 +45,60 @@ message: "Welcome, you've been logged in!" };
 })
 export class UserService {
 
-  session_loggedin: Subject<boolean>;
+  private session: string;
+  user: User;
 
   constructor(private errorService: ErrorService, private http: HttpClient) { }
 
   // to actually log-in!
   doLogin(email: string, password: string) {
-    const REQUEST = this.http.post(environment.apiUrl + '/login',
+    const REQUEST = this.http.post(environment.apiUrl + '/user/login',
       {
         email: email,
         password: password
-      }, {
-        withCredentials: true
       }
     );
     // Request is sent, when we subscribe to it!
     REQUEST.subscribe(
       // if res.status(200) (User is valid)
       (resp: any) => {
-        this.session_loggedin.next(true);
+        this.session = resp.session;
+        this.user = new User(resp.session, resp.email, resp.name, "");
         // (resp && resp.user && resp.user.name) ? "Welcome ${resp.user.name}" : "Logged in!"
       },
       // if res.status(403) (User invalid!) (and maybe an 'errorMessage' variable)
       (errorResp) => {
-        this.session_loggedin.next(false);
+        this.session = "";
         // errorResp.error ? errorResp.error.errorMessage : "An unknown error has occured."
       }
     );
 }
 
 // to get current login-status
-  getLogin() {
+  loginOut() {
     // get request, with "credentials for session cookie"
-    const REQUEST = this.http.get(
-      environment.apiUrl + '/login',
-      { withCredentials: true  });
+    const REQUEST = this.http.post(
+      environment.apiUrl + '/user/logout',
+        {
+          session: this.session
+        }
+      );
 
     // subscribe to the result of the get request
     REQUEST.subscribe(
       // if http.get() decides it's a successfull request, this will be called
       (resp: any) => {
-        this.session_loggedin.next(resp.loggedIn);
+        this.session = "";
       },
       // this will by definition of a subscription,
       // be called if there is an error, defined by http.get()
       (errorResp) => {
         this.errorService.tellError(
-          {type: "warning", message: "Can not get logged-in status"}
+          {type: "warning", message: "Can not log out"}
         );
       }
     );
-}
+  }
 
   getUser(id: string): User {
     const user = TESTUSERS.find(tu => tu.getID() === id);
@@ -103,8 +108,9 @@ export class UserService {
     return null;
   }
 
-  login(user: User): boolean {
-    return this.loginConfirmed(user);
+  login(user: User): Observable<User> {
+    this.doLogin(user.email, user.password);
+    return of(this.user);
   }
 
   private loginConfirmed(user: User): boolean {

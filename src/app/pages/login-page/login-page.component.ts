@@ -19,8 +19,16 @@ export class LoginPageComponent implements OnInit {
   }
 
   requestLogin() {
+    this.userService.login(this.user).subscribe(
+      (user) => {
+          this.user = user;
+          this.router.navigate(["dashboard"]);
+        },
+      (error) => {}
+    );
+
     if (this.userService.login(this.user)) {
-      this.router.navigate(["dashboard"]);
+
     }
   }
 
