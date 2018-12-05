@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="!loading">
   <div class="text-center my-5">
     <img src="../../assets/ViNABLogo.png" class="img-fluid mx-auto" alt="">
   </div>
@@ -33,4 +33,15 @@
     </div>
   </div>
 
+</div>
+
+<div *ngIf="loading">
+  <div class="text-center my-5">
+    <img src="../../assets/ViNABLogo.png" class="img-fluid mx-auto" alt="">
+
+  </div>
+  <div class="row">
+    <div class="col-6 offset-3"> <h1 class="text-center">LOADING</h1>
+    </div>
+  </div>
 </div>

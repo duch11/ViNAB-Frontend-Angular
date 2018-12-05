@@ -8,11 +8,14 @@ import { Account } from "src/app/model/account";
 import { ACCOUNTS } from "../../model/test-data";
 import { BudgetAccount } from "src/app/model/budgetAccount";
 import { BankAccount } from "src/app/model/bankAccount";
+import { Observable, of, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
+
+  private accounts: Account[];
 
   constructor(public errorservice: ErrorService, private userservice: UserService) { }
 
@@ -20,7 +23,7 @@ export class AccountService {
     // todo: backend replacement
     // tslint:disable-next-line:radix
     const userid_asint: number = Number.parseInt(userid);
-    ACCOUNTS[userid_asint - 1].push(
+    ACCOUNTS[0].push(
       new Account("-101 new account number",
         new BudgetAccount("Untitled username",
                           "Untitled budget name",
@@ -32,10 +35,14 @@ export class AccountService {
         "new account"));
   }
 
-  getAccounts(userid: string = "10"): Account[] {
 
+  getAccountsFor(user: User): Observable<Account[]> {
+    // now fetch accounts!
+    this.errorservice.tellError({type: "warning", message: "getAccountsFor needs functionality: " + user });
+    /*
     // todo: replace with server api call
-    if (this.userservice.getUser(userid)) {
+    var sessionvalid = true;
+    if (sessionvalid) {
       this.errorservice.tellError({type: "success", message: "found accounts for uID: " + userid });
 
       // tslint:disable-next-line:radix
@@ -45,8 +52,10 @@ export class AccountService {
 
     // error
     this.errorservice.tellError({type: "warning", message: "no accounts found for uID: " + userid });
-    return [];
+    */
+    return of(ACCOUNTS[0]);
   }
+
 
   edit(sync_id: string) {
     this.errorservice.tellError({type: "success", message: "accountservice.edit() works! Sync_id: " + sync_id});
