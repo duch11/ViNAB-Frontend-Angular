@@ -3,7 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 
 import { User } from "src/app/model/user";
-import { UserService } from "src/app/services/user/user.service";
+import { AuthService } from "src/app/services/auth/auth.service";
+
 
 
 
@@ -22,10 +23,7 @@ export class RegisterUserComponent implements OnInit {
   property_class_eye: string;
 
 
-  constructor(
-    private userService: UserService,
-    private router: Router
-    ) { }
+  constructor( private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
     this.user = new User("", "", "", "");
@@ -46,10 +44,9 @@ export class RegisterUserComponent implements OnInit {
 
   // submit button
   registerUser() {
-    if (this.userService.addUser(this.user)) {
-      this.router.navigate(["/"]);
+    if(this.authService.register(this.user)){
+      this.router.navigate(["/dashboard"]);
     }
-
   }
 
 }

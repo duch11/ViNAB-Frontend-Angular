@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ErrorService } from "./services/error/error.service";
+import { AuthService } from "./services/auth/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -8,15 +10,19 @@ import { ErrorService } from "./services/error/error.service";
 })
 export class AppComponent {
 
-  constructor(public errorService: ErrorService) {
+  constructor(public errorService: ErrorService, private authService: AuthService, private router: Router) {
 
   }
-  currentUser = 'ViNAB-Frontend-Angular';
 
   // temporary code for alert
   alert: boolean;
 
   close(): void {
     this.alert = false;
+  }
+
+  logOut() {
+    this.authService.logOut();
+    this.router.navigate([""]);
   }
 }

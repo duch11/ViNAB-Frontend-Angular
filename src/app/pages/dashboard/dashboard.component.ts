@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserService } from "src/app/services/user/user.service";
 import { User } from "src/app/model/user";
 import { Account } from "src/app/model/account";
 import { AccountService } from "src/app/services/account/account.service";
@@ -18,7 +17,7 @@ export class DashboardComponent implements OnInit {
   constructor(private accountService: AccountService) { }
 
   ngOnInit() {
-    this.accountService.getAccountsFor(this.user)
+    this.accountService.getAccounts()
     .subscribe(
       (accounts: Account[]) => {
         this.accounts = accounts;

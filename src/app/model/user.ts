@@ -7,15 +7,11 @@ export class User {
     name: string;
     password: string;
 
-    constructor(_id: string, email: string, name: string, password?: string) {
+    constructor(_id: string = "", email: string = "", name: string = "", password?: string) {
         this._id = _id;
         this.email = email;
         this.name = name;
         this.password = password;
-    }
-
-    getID(): string {
-        return this._id;
     }
 
     toString(): string {
