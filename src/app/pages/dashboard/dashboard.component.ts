@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserService } from "src/app/services/user/user.service";
 import { User } from "src/app/model/user";
 import { Account } from "src/app/model/account";
 import { AccountService } from "src/app/services/account/account.service";
+import { Observable, of, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,15 +11,22 @@ import { AccountService } from "src/app/services/account/account.service";
 })
 export class DashboardComponent implements OnInit {
 
-  user: User;
-  accounts: Account[];
+  @Input() user: User;
+  private accounts: Account[];
 
-  constructor(private userservice: UserService,
-  private accountService: AccountService) { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit() {
-    this.user = this.userservice.getUser("1");
-    this.accounts = this.accountService.getAccounts(this.user.getID());
+    this.accountService.getAccounts()
+    .subscribe(
+      (accounts: Account[]) => {
+        this.accounts = accounts;
+      }
+    );
+  }
+
+  addAccount() {
+    this.accountService.createAccount();
   }
 
 }

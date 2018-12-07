@@ -2,23 +2,19 @@ import { Account } from "./account";
 import { BudgetAccount } from "./budgetAccount";
 import { BankAccount } from "./bankAccount";
 export class User {
-    private id: string;
+    _id: string;
     email: string;
     name: string;
     password: string;
 
-    constructor(id: string, email: string, name: string, password: string) {
-        this.id = id;
-        this.email = "";
-        this.name = "";
-        this.password = "";
-    }
-
-    getID(): string {
-        return this.id;
+    constructor(_id: string = "", email: string = "", name: string = "", password?: string) {
+        this._id = _id;
+        this.email = email;
+        this.name = name;
+        this.password = password;
     }
 
     toString(): string {
-        return this.id + this.email + this.name + this.password;
+        return this._id + this.email + this.name + this.password;
     }
 }

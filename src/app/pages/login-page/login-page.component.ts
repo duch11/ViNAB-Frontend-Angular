@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from "src/app/model/user";
-import { UserService } from "src/app/services/user/user.service";
 import { Router } from "@angular/router";
+import { AuthService } from "src/app/services/auth/auth.service";
 
 @Component({
   selector: 'app-login-page',
@@ -11,17 +11,40 @@ import { Router } from "@angular/router";
 export class LoginPageComponent implements OnInit {
 
   user: User;
-  constructor(private userService: UserService,
-  private router: Router) { }
+  loading: boolean = false;
+
+  rememberme: boolean = true;
+  constructor(private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
-    this.user = new User("","","","");
+    this.user = new User("", "", "", "");
+
   }
 
   requestLogin() {
-    if (this.userService.login(this.user)) {
-      this.router.navigate(["dashboard"]);
-    }
+    this.loading = true;
+
+    this.authService.useLocalStorage = this.rememberme;
+    this.authService.doLogin(this.user).subscribe( (valid: boolean) => {
+      if(valid){
+        this.router.navigate(["dashboard"]);
+      } else {
+        this.loading = false;
+      }
+    });
+     /*  () => {
+          if (isvalid){
+            this.router.navigate(["dashboard"]);
+          } else {
+            this.loading = false;
+          }
+        },
+      (error) => {
+        console.log(error);
+      }
+    ); */
+
   }
 
 }

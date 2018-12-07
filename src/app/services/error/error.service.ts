@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { Alert } from '../../model/alert.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ErrorService {
   errors: Alert[] = [];

@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="!loading">
   <div class="text-center my-5">
     <img src="../../assets/ViNABLogo.png" class="img-fluid mx-auto" alt="">
   </div>
@@ -17,6 +17,12 @@
         <input [(ngModel)]="user.password" type="password" class="form-control" name="password" id="password" placeholder="insert password">
       </div>
     </div>
+    <div class="form-group row">
+      <div class="col-lg-6 offset-lg-3">
+        <label for="rememberme">Remember me</label>
+        <input [(ngModel)]="rememberme" type="checkbox" aria-label="" name="rememberme">
+      </div>
+    </div>
 
 
     <div class="form-group row">
@@ -32,5 +38,15 @@
         <a [routerLink]="[ '/register' ]" routerLinkActive="current" name="register-btn" id="register-btn" class="btn btn-lg btn-secondary btn-block" role="button">Register</a>
     </div>
   </div>
+</div>
 
+<div *ngIf="loading">
+  <div class="text-center my-5">
+    <img src="../../assets/ViNABLogo.png" class="img-fluid mx-auto" alt="">
+
+  </div>
+  <div class="row">
+    <div class="col-6 offset-3"> <h1 class="text-center">LOADING</h1>
+    </div>
+  </div>
 </div>
