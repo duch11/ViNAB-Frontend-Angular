@@ -25,4 +25,8 @@ export class DashboardComponent implements OnInit {
     );
   }
 
+  addAccount() {
+    this.accountService.createAccount("1");
+  }
+
 }

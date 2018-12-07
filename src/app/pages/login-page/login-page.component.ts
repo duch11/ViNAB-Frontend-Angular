@@ -12,6 +12,8 @@ export class LoginPageComponent implements OnInit {
 
   user: User;
   loading: boolean = false;
+
+  rememberme: boolean = false;
   constructor(private authService: AuthService,
     private router: Router) { }
 
@@ -23,6 +25,7 @@ export class LoginPageComponent implements OnInit {
   requestLogin() {
     this.loading = true;
 
+    this.authService.useLocalStorage = this.rememberme;
     this.authService.doLogin(this.user).subscribe( (valid: boolean) => {
       if(valid){
         this.router.navigate(["dashboard"]);

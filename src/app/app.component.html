@@ -9,7 +9,7 @@
     <li class="nav-item">
       <a class="nav-link" [routerLink]="[ '/dashboard' ]" routerLinkActive="current">dashboard</a>
     </li>-->
-    <li *ngIf="authService.sessionValid()" class="nav-item">
+    <li *ngIf="authService.isSessionValid()" class="nav-item">
       <a class="nav-link" (click)="logOut()">Logoff</a>
     </li>
 

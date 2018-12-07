@@ -13,8 +13,8 @@ import { AccountDetailsComponent } from './pages/account-details/account-details
 const routes: Routes = [
   { path: '', component: LoginPageComponent },
   { path: 'register', component: RegisterUserComponent},
-  { path: 'dashboard', component: DashboardComponent , canActivate: [AuthGuard]},
-  { path: 'details', component: AccountDetailsComponent}
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  { path: 'details', component: AccountDetailsComponent, canActivate: [AuthGuard]}
 
 ];
 

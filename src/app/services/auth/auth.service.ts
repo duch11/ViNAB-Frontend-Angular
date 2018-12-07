@@ -9,25 +9,32 @@ import * as STORAGEKEYS from "./storage-keys";
 import { tap, delay } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+
   private user: User;
+  sessionValid: boolean;
+  useLocalStorage: boolean;
 
 
   constructor(private errorService: ErrorService, private http: HttpClient) { }
 
   getAuthorizedUser(): User
   {
-    if(this.sessionValid()){
-      return new User(
+    if(this.isSessionValid()){
+      if(this.isSessionInLocalstorage()){
+        return new User(
         localStorage.getItem(STORAGEKEYS.SESSION_KEY),
         localStorage.getItem(STORAGEKEYS.USER_EMAIL),
         localStorage.getItem(STORAGEKEYS.USER_FIRSTNAME));
+      } else {
+        console.log(this.user);
+        return this.user;
+      }
     }
     return null;
   }
-
 
   register(user: User): boolean {
     if (this.isUserValid(user)) {
@@ -45,6 +52,8 @@ export class AuthService {
 
   // to actually log-in!
   doLogin(user: User): Observable<boolean> {
+
+
     const REQUEST = this.http.post(environment.apiUrl + '/user/login',
       {
         email: user.email,
@@ -58,10 +67,18 @@ export class AuthService {
       // if res.status(200) (User is valid)
       (resp: User) => {
         console.log("user.service.doLogin(): Got response: " + resp.name + " " + resp.email + " " + resp._id);
-        localStorage.setItem(STORAGEKEYS.SESSION_KEY, resp._id);
-        localStorage.setItem(STORAGEKEYS.SESSION_ACTIVE, "true");
-        localStorage.setItem(STORAGEKEYS.USER_EMAIL, resp.email);
-        localStorage.setItem(STORAGEKEYS.USER_FIRSTNAME, resp.name);
+        if(this.useLocalStorage){
+          localStorage.setItem(STORAGEKEYS.SESSION_KEY, resp._id);
+          localStorage.setItem(STORAGEKEYS.SESSION_ACTIVE, "true");
+          localStorage.setItem(STORAGEKEYS.USER_EMAIL, resp.email);
+          localStorage.setItem(STORAGEKEYS.USER_FIRSTNAME, resp.name);
+        } else {
+          this.disableLocalStorage();
+          this.sessionValid = true;
+
+          this.user = resp;
+        }
+
         observer.next(true);
       },
       (errorResp) => {
@@ -74,21 +91,35 @@ export class AuthService {
     // Request is sent, when we subscribe to it!
   } // end of doLogin()
 
-  sessionValid(): boolean {
+  isSessionValid(): boolean {
     if (localStorage.getItem("sessionActive") === "true" && localStorage.getItem("sessionKey") !== "") {
       // here code that fetches the user could go
       return true;
+    } else if (this.sessionValid) {
+     return true;
     } else {
-     return false;
+      return false;
+    }
+  }
+
+  isSessionInLocalstorage(): boolean {
+    if(localStorage.getItem(STORAGEKEYS.SESSION_KEY)){
+      return true;
+    } else {
+      return false;
     }
   }
 
   logOut() {
     this.http.post(environment.apiUrl + "/user/logout", {_id: localStorage.getItem(STORAGEKEYS.SESSION_KEY)}).subscribe(
       (response) => {
+        this.user = new User();
+        this.sessionValid = false;
         this.disableLocalStorage();
       },
       (errorResp) => {
+        this.user = new User();
+        this.sessionValid = false;
         this.disableLocalStorage();
       }
     );

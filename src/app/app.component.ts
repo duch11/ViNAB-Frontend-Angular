@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 })
 export class AppComponent {
 
-  constructor(public errorService: ErrorService, private authService: AuthService, private router: Router) {
+  constructor(public errorService: ErrorService, public authService: AuthService, public router: Router) {
 
   }
 

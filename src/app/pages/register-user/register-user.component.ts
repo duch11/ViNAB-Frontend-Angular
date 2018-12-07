@@ -26,6 +26,7 @@ export class RegisterUserComponent implements OnInit {
   constructor( private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
+
     this.user = new User("", "", "", "");
     this.property_type_password     = hide_pw;
     this.property_class_eye         = closed_eye;

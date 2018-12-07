@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
     return this.checkSession(url);
   }
   checkSession( url: string ): boolean {
-    if(this.authService.sessionValid()){
+    if(this.authService.isSessionValid()){
       return true;
     }
     this.router.navigate([""]);
