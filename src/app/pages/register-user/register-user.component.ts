@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { User } from "src/app/model/user";
 import { AuthService } from "src/app/services/auth/auth.service";
+import { ErrorService } from "src/app/services/error/error.service";
 
 
 
@@ -23,7 +24,7 @@ export class RegisterUserComponent implements OnInit {
   property_class_eye: string;
 
 
-  constructor( private router: Router, private authService: AuthService) { }
+  constructor( private router: Router, private authService: AuthService, private errorService: ErrorService) { }
 
   ngOnInit() {
 
@@ -45,9 +46,11 @@ export class RegisterUserComponent implements OnInit {
 
   // submit button
   registerUser() {
-    if(this.authService.register(this.user)){
-      this.router.navigate(["/dashboard"]);
-    }
+    this.authService.register(this.user).subscribe((success) => {
+      if(success){
+        this.router.navigate(["/dashboard"]);
+      }
+    })
   }
 
 }

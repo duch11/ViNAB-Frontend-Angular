@@ -4,40 +4,29 @@
 <div class="row justify-content-center">
   <form class="col-12">
 
+    <div class="form-group">
+      <label for="full-name" class="col-sm-form-label">Name:</label>
+      <input [(ngModel)]="user.name" type="text" class="form-control" name="full-name" id="full-name" placeholder="insert your full name">
+    </div>
 
-      <div class="form-group">
-        <label for="full-name" class="col-sm-form-label">Name:</label>
-        <input [(ngModel)]="user.name" type="text" class="form-control" name="full-name" id="full-name" placeholder="insert your full name">
-      </div>
+    <div class="form-group">
+      <label for="email" class="col-sm-form-label">Email:</label>
+      <input [(ngModel)]="user.email" type="email" class="form-control" name="email" id="email" placeholder="insert email">
+    </div>
 
-
-
-
-      <div class="form-group">
-        <label for="email" class="col-sm-form-label">Email:</label>
-        <input [(ngModel)]="user.email" type="email" class="form-control" name="email" id="email" placeholder="insert email">
-      </div>
-
-
-
-      <div class="form-group">
-        <label for="password" class="col-sm-form-label">Password:</label>
-        <div class="input-group">
-          <input [(ngModel)]="user.password" [type]="property_type_password" type="password" class="form-control" name="password" id="password" placeholder="insert password">
-          <div class="input-group-append">
-              <a class="input-group-text" (click)="togglePassword()"><i [class]="property_class_eye" aria-hidden="true"></i></a>
-          </div>
+    <div class="form-group">
+      <label for="password" class="col-sm-form-label">Password:</label>
+      <div class="input-group">
+        <input [(ngModel)]="user.password" [type]="property_type_password" type="password" class="form-control" name="password" id="password" placeholder="insert password">
+        <div class="input-group-append">
+            <a class="input-group-text" (click)="togglePassword()"><i [class]="property_class_eye" aria-hidden="true"></i></a>
         </div>
       </div>
+    </div>
 
-
-
-
-      <div class="form-group">
-        <button (click)="registerUser()" class="btn btn-lg btn-block btn-primary">Register</button>
-      </div>
-
+    <div class="form-group">
+      <button (click)="registerUser()" class="btn btn-lg btn-block btn-primary">Register</button>
+    </div>
 
   </form>
-
 </div>

@@ -12,6 +12,9 @@ export const EMAIL_INVALID: Alert = { type: ERROR_TYPE_WARNING,
   message: "Email not valid! Needs to be at least "
     + EMAIL_MIN_LENGTH + " characters long!" };
 
+export const EMAIL_TAKEN: Alert = { type: ERROR_TYPE_WARNING,
+  message: "Email is already taken! please use another"};
+
 export const PASSWORD_INVALID: Alert = { type: ERROR_TYPE_WARNING,
   message: "Password not valid! Needs to be at least "
     + PASS_MIN_LENGTH + " characters long!"};

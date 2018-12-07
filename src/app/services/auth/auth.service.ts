@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from "src/app/model/user";
 import { ErrorService } from "../error/error.service";
 import { HttpClient } from "@angular/common/http";
-import { Observable, of } from "rxjs";
+import { Observable, of, Subscriber } from "rxjs";
 import { environment } from "src/environments/environment";
 import * as ERRORS from "../error/error-messages";
 import * as STORAGEKEYS from "./storage-keys";
@@ -36,18 +36,40 @@ export class AuthService {
     return null;
   }
 
-  register(user: User): boolean {
+  register(user: User): Observable<boolean> {
+
     if (this.isUserValid(user)) {
-      this.errorService.clearError(ERRORS.EMAIL_INVALID);
-      this.errorService.clearError(ERRORS.PASSWORD_INVALID);
-      this.errorService.clearError(ERRORS.NAME_INVALID);
-      this.errorService.tellError(ERRORS.USER_CREATED);
-
-      return false;
-    } else {
-
-      return false;
-    }
+      const REQUEST = this.http.post(environment.apiUrl + '/user/create',
+        {
+          email: user.email,
+          name: user.name,
+          password: user.password,
+          loggedin: true
+        }
+      );
+      return new Observable<boolean>((observer) => {
+        REQUEST.subscribe(
+        // if res.status(200) (User is valid)
+          (resp: User) => {
+            // save login in memory
+            this.saveLoginCallback(resp,observer);
+            // tell errors
+            this.errorService.clearError(ERRORS.EMAIL_INVALID);
+            this.errorService.clearError(ERRORS.EMAIL_TAKEN);
+            this.errorService.clearError(ERRORS.PASSWORD_INVALID);
+            this.errorService.clearError(ERRORS.NAME_INVALID);
+            this.errorService.tellError(ERRORS.USER_CREATED);
+          }
+          ,
+          (errorResp) => {
+            this.errorService.tellError(ERRORS.EMAIL_TAKEN);
+            console.log("user.service.register(): Got error: Message: " + errorResp.message + " Body: "+ errorResp.body);
+            this.disableLocalStorage();
+            observer.next(false);
+          }
+        ); // end of subscribe
+      });
+    } // end of if
   }
 
   // to actually log-in!
@@ -66,21 +88,9 @@ export class AuthService {
 
       // if res.status(200) (User is valid)
       (resp: User) => {
-        console.log("user.service.doLogin(): Got response: " + resp.name + " " + resp.email + " " + resp._id);
-        if(this.useLocalStorage){
-          localStorage.setItem(STORAGEKEYS.SESSION_KEY, resp._id);
-          localStorage.setItem(STORAGEKEYS.SESSION_ACTIVE, "true");
-          localStorage.setItem(STORAGEKEYS.USER_EMAIL, resp.email);
-          localStorage.setItem(STORAGEKEYS.USER_FIRSTNAME, resp.name);
-        } else {
-          this.disableLocalStorage();
-          this.sessionValid = true;
-
-          this.user = resp;
-        }
-
-        observer.next(true);
-      },
+        this.saveLoginCallback(resp,observer);
+      }
+      ,
       (errorResp) => {
         console.log("user.service.doLogin(): Got error: Message: " + errorResp.message + " Body: "+ errorResp.body);
         this.disableLocalStorage();
@@ -90,6 +100,24 @@ export class AuthService {
 
     // Request is sent, when we subscribe to it!
   } // end of doLogin()
+
+  saveLoginCallback(resp: User, observer?: Subscriber<boolean>) {
+    console.log("user.service.loginCallback(): Got response: " + resp.name + " " + resp.email + " " + resp._id);
+    if(this.useLocalStorage){
+      localStorage.setItem(STORAGEKEYS.SESSION_KEY, resp._id);
+      localStorage.setItem(STORAGEKEYS.SESSION_ACTIVE, "true");
+      localStorage.setItem(STORAGEKEYS.USER_EMAIL, resp.email);
+      localStorage.setItem(STORAGEKEYS.USER_FIRSTNAME, resp.name);
+    } else {
+      this.disableLocalStorage();
+      this.sessionValid = true;
+      this.user = resp;
+    }
+
+    if(observer) {
+      observer.next(true);
+    }
+  }
 
   isSessionValid(): boolean {
     if (localStorage.getItem("sessionActive") === "true" && localStorage.getItem("sessionKey") !== "") {
