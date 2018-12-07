@@ -13,7 +13,7 @@ export class LoginPageComponent implements OnInit {
   user: User;
   loading: boolean = false;
 
-  rememberme: boolean = false;
+  rememberme: boolean = true;
   constructor(private authService: AuthService,
     private router: Router) { }
 
