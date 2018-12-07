@@ -15,10 +15,7 @@ const BANKACCOUNTS: BankAccount[] = [
     new BankAccount("my bank account 3", "BMO 3", "Mastercard Black 3")
 ];
 
-export let ACCOUNTS: Account[][] = [
-    [new Account("1", YNABACCOUNTS[0], BANKACCOUNTS[0], "today 1", "My lovely budget 1")],
-    [new Account("1", YNABACCOUNTS[1], BANKACCOUNTS[1], "today 2", "My lovely budget 2")],
-    [new Account("1", YNABACCOUNTS[2], BANKACCOUNTS[2], "today 3", "My lovely budget 3")]];
+
 
 export const TESTUSERS: User[] = [
     new User("1", "my@email.com", "me my", "123"),

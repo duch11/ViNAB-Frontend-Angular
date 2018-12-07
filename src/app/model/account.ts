@@ -1,24 +1,18 @@
 import { BankAccount } from "./bankAccount";
 import { BudgetAccount } from "./budgetAccount";
 export class Account {
-    private id: string;
+    _id: string;
     lastsync: string;
     nickName: string;
     budget: BudgetAccount;
     bank: BankAccount;
+    owner_id: string;
 
-    constructor (id: string, budget: BudgetAccount, bank: BankAccount, lastsync: string, nickname: string) {
-        this.id = id;
+    constructor (budget: BudgetAccount, bank: BankAccount, owner_id: string, lastsync: string, nickname: string) {
+        this.owner_id = owner_id;
         this.nickName = nickname;
         this.lastsync = lastsync;
         this.bank = bank;
         this.budget = budget;
-    }
-
-    /**
-     * getID
- : string    */
-    public getId(): string {
-        return this.id;
     }
 }

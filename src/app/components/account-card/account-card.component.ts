@@ -19,12 +19,12 @@ export class AccountCardComponent implements OnInit {
   }
 
   edit() {
-    this.accountservice.edit(this.account.getId());
+    //this.accountservice.edit();
     this.router.navigate(["details"]);
   }
 
   delete() {
-    this.accountservice.remove(this.account.getId());
+    //this.accountservice.remove();
   }
 
 }

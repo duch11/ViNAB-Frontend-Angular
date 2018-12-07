@@ -5,13 +5,13 @@ import { Alert } from "../../model/alert.interface";
 import { User } from "src/app/model/user";
 
 import { Account } from "src/app/model/account";
-import { ACCOUNTS } from "../../model/test-data";
 import { BudgetAccount } from "src/app/model/budgetAccount";
 import { BankAccount } from "src/app/model/bankAccount";
 import { Observable, of, Subject } from 'rxjs';
 import { AuthService } from "../auth/auth.service";
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { environment } from "src/environments/environment";
+import * as STORAGEKEYS from "../auth/storage-keys";
 
 @Injectable({
   providedIn: 'root'
@@ -22,20 +22,32 @@ export class AccountService {
 
   constructor(public errorservice: ErrorService, private authService: AuthService, private http: HttpClient) { }
 
-  createAccount(userid: string) {
-    // todo: backend replacement
-    // tslint:disable-next-line:radix
-    const userid_asint: number = Number.parseInt(userid);
-    ACCOUNTS[0].push(
-      new Account("-101 new account number",
+  createAccount() {
+    let user = this.authService.getAuthorizedUser();
+    this.http.post(environment.apiUrl + "/account/create",
+    new Account(
+      new BudgetAccount("something", "something else", "something trice"),
+      new BankAccount("bank nickname", "bank name", "account namess")
+      , user._id, "now?", "My account")
+    ).subscribe(
+      (response) => {
+
+      },
+      (errorResp) => {
+
+      }
+    );
+
+      let acc = new Account(
         new BudgetAccount("Untitled username",
                           "Untitled budget name",
                           "Untitled account name"),
         new BankAccount("untitled bank nickname",
                         "untitled bank",
                         "untitled bank account name"),
+        "",
         "noll",
-        "new account"));
+        "new account");
   }
 
 
