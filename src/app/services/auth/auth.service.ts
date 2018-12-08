@@ -139,18 +139,10 @@ export class AuthService {
   }
 
   logOut() {
-    this.http.post(environment.apiUrl + "/user/logout", {_id: localStorage.getItem(STORAGEKEYS.SESSION_KEY)}).subscribe(
-      (response) => {
-        this.user = new User();
-        this.sessionValid = false;
-        this.disableLocalStorage();
-      },
-      (errorResp) => {
-        this.user = new User();
-        this.sessionValid = false;
-        this.disableLocalStorage();
-      }
-    );
+    this.http.post(environment.apiUrl + "/user/logout", {_id: localStorage.getItem(STORAGEKEYS.SESSION_KEY)}).subscribe();
+    this.user = new User();
+    this.sessionValid = false;
+    this.disableLocalStorage();
   }
 
   disableLocalStorage(){

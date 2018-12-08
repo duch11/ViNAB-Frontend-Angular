@@ -5,7 +5,7 @@
   <div class="col-lg-6 offset-lg-3">
     <ul class="list-group border-0">
       <li *ngFor="let account of accounts" class="list-group-item border-0 px-0">
-          <app-account-card [account]="account"></app-account-card>
+          <app-account-card [account]="account" [accounts]="accounts"></app-account-card>
       </li>
       <!--<li class="list-group-item border-0 px-0"><app-account-card></app-account-card></li>-->
       <li class="list-group-item border-0 px-0">

@@ -3,50 +3,44 @@
     <img src="../../assets/ViNABLogo.png" class="img-fluid mx-auto" alt="">
   </div>
 
-  <form>
+  <form  class="col-lg-6 offset-lg-3">
     <div class="form-group row">
-      <div class="col-lg-6 offset-lg-3">
-        <label for="e-mail" class="col-lg-1-12 col-form-label">Email</label>
-        <input [(ngModel)]="user.email" type="text" class="form-control" name="e-mail" id="e-mail" placeholder="insert email">
-      </div>
+      <label for="e-mail" class="col-form-label">Email</label>
+      <input [(ngModel)]="user.email" type="text" class="form-control" name="e-mail" id="e-mail" placeholder="insert email">
     </div>
 
     <div class="form-group row">
-      <div class="col-lg-6 offset-lg-3">
-        <label for="password">Password</label>
-        <input [(ngModel)]="user.password" type="password" class="form-control" name="password" id="password" placeholder="insert password">
-      </div>
+      <label for="password">Password</label>
+      <input [(ngModel)]="user.password" type="password" class="form-control" name="password" id="password" placeholder="insert password">
     </div>
+
     <div class="form-group row">
-      <div class="col-lg-6 offset-lg-3">
-        <label for="rememberme">Remember me</label>
-        <input [(ngModel)]="rememberme" type="checkbox" aria-label="" name="rememberme">
+      <div class="form-check">
+        <input [(ngModel)]="rememberme" type="checkbox" class="form-check-input" id="remembermyself" name="remembermyself">
+        <label for="remembermyself" class="form-check-label" >Remember me</label>
       </div>
     </div>
 
 
     <div class="form-group row">
-      <div class="col-lg-6 offset-lg-3">
-        <button (click)="requestLogin()" class="btn btn-lg btn-block btn-success">Login</button>
-      </div>
+      <button (click)="requestLogin()" class="btn btn-lg btn-block btn-success">Login</button>
+    </div>
+    <div class="form-group row">
+      <p>Not a user?</p>
+      <a [routerLink]="[ '/register' ]" routerLinkActive="current" name="register-btn" id="register-btn" class="btn btn-lg btn-secondary btn-block" role="button">Register</a>
     </div>
   </form>
 
-  <div class="form-group row">
-    <div class="col-lg-6 offset-lg-3">
-        <p>Not a user?</p>
-        <a [routerLink]="[ '/register' ]" routerLinkActive="current" name="register-btn" id="register-btn" class="btn btn-lg btn-secondary btn-block" role="button">Register</a>
-    </div>
-  </div>
+
 </div>
 
 <div *ngIf="loading">
   <div class="text-center my-5">
     <img src="../../assets/ViNABLogo.png" class="img-fluid mx-auto" alt="">
-
   </div>
   <div class="row">
-    <div class="col-6 offset-3"> <h1 class="text-center">LOADING</h1>
+    <div class="col-6 offset-3">
+      <h1 class="text-center">LOADING</h1>
     </div>
   </div>
 </div>

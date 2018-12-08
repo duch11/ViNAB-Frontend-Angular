@@ -11,7 +11,8 @@ import { Router } from "@angular/router";
 export class AccountCardComponent implements OnInit {
 
   @Input() account: Account;
-  constructor(private accountservice: AccountService,
+  @Input() accounts: Account[];
+  constructor(private accountService: AccountService,
   private router: Router) { }
 
   ngOnInit() {
@@ -23,8 +24,14 @@ export class AccountCardComponent implements OnInit {
     this.router.navigate(["details"]);
   }
 
-  delete() {
-    //this.accountservice.remove();
+  delete(account) {
+    this.accountService.delete(account).subscribe(
+      (deletedAccount: Account) => {
+        this.accounts = this.accounts.filter(acc => acc._id !== deletedAccount._id);
+      }
+    );
   }
+
+
 
 }
