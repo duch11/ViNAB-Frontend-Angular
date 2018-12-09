@@ -8,7 +8,7 @@ export class Account {
     bank: BankAccount;
     owner_id: string;
 
-    constructor (budget: BudgetAccount, bank: BankAccount, owner_id: string, lastsync: string, nickname: string) {
+    constructor (owner_id: string, lastsync: string, nickname: string, budget?: BudgetAccount, bank?: BankAccount) {
         this.owner_id = owner_id;
         this.nickName = nickname;
         this.lastsync = lastsync;

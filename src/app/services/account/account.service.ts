@@ -27,16 +27,16 @@ export class AccountService {
     let user = this.authService.getAuthorizedUser();
 
     this.http.post<Account>(environment.apiUrl + "/account/create",
-    new Account(
-      new BudgetAccount("something", "something else", "something trice"),
-      new BankAccount("bank nickname", "bank name", "account namess")
-      , user._id, "now?", "My account")
+      new Account(user._id,"today","Empty account")
     ).subscribe(
       (account) => {
         this.accounts.push(account);
       });
   }
-
+/* new Account(
+      new BudgetAccount("something", "something else", "something trice"),
+      new BankAccount("bank nickname", "bank name", "account namess")
+      , user._id, "now?", "My account") */
 
   getAccounts() {
 

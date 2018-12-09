@@ -19,36 +19,63 @@
 
   <div class="form-row">
 
-    <div class="form-group col-lg-6 offset-lg-3">
-      <label class="col-sm-form-label">
-        Bank connection
+    <div class="form-group mx-auto col-lg-6">
+      <label class="text-center display-3 mx-auto col-12">
+        Bank
       </label>
-      <div class="card">
+      <div class="card shadow">
         <div class="card-body">
-          <p>Arbejdernes Landsbank</p>
-          <p>Dankort ***324</p>
-          <button type="submit" class="btn btn-lg btn-block btn-warning">Edit bank connection</button>
+          <div class="form-group">
+            <label for="bankNickName">Nickname:</label>
+            <input type="text" class="form-control" name="bankNickName" id="bankNickName" aria-describedby="#bankNickName-help-text" placeholder="">
+            <small id="bankNickName-help-text" class="form-text text-muted">Just pick any! :)</small>
+          </div>
+          <div class="form-group">
+            <label for="bankName">Institution:</label>
+            <input type="text" class="form-control" name="bankName" id="bankName" aria-describedby="#bankName-help-text" placeholder="">
+            <small id="bankName-help-text" class="form-text text-muted">The name of your bank.</small>
+          </div>
+          <div class="form-group">
+            <label for="bankAccName">Account name:</label>
+            <input type="text" class="form-control" name="bankAccName" id="bankAccName" aria-describedby="#bankAccName-help-text" placeholder="">
+            <small id="bankAccName-help-text" class="form-text text-muted">The name of your bank-account.</small>
+          </div>
+          <!-- <button type="submit" class="btn btn-lg btn-block btn-warning">Edit bank connection</button> -->
         </div>
       </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-lg-6 offset-lg-3">
-      <label class="col-sm-form-label">
-          YNAB connection
+ <!--  </div>
+  <div class="form-row"> -->
+    <div class="form-group col-lg-6">
+      <label class="text-center display-3 mx-auto col-12 ">
+          YNAB
       </label>
-      <div class="card">
+      <div class="card shadow">
         <div class="card-body">
-          <h3>jonah-holmes@gmail.com</h3>
-          <h3>Dansk budget - Dankort</h3>
-          <button type="submit" class="btn btn-lg btn-block btn-primary">Edit YNAB connection</button>
+          <div class="form-group">
+            <label for="ynabUserName">YNAB username:</label>
+            <input type="text" class="form-control" name="ynabUserName" id="ynabUserName" aria-describedby="#ynabUserName-help-text" placeholder="">
+            <small id="ynabUserName-help-text" class="form-text text-muted">You're YNAB username.</small>
+          </div>
+          <div class="form-group">
+            <label for="ynabBudgetName">YNAB Budget:</label>
+            <input type="text" class="form-control" name="ynabBudgetName" id="ynabBudgetName" aria-describedby="#ynabBudgetName-help-text" placeholder="">
+            <small id="ynabBudgetName-help-text" class="form-text text-muted">The YNAB budget you want to sync with your bank.</small>
+          </div>
+          <div class="form-group">
+            <label for="ynabBudgetName">Budget account:</label>
+            <input type="text" class="form-control" name="ynabBudgetName" id="ynabBudgetName" aria-describedby="#ynabBudgetName-help-text" placeholder="">
+            <small id="ynabBudgetName-help-text" class="form-text text-muted">The YNAB budget you want to sync with your bank.</small>
+          </div>
+
+          <!-- <button type="submit" class="btn btn-lg btn-block btn-primary">Edit YNAB connection</button> -->
         </div>
       </div>
     </div>
   </div>
 
   <div class="form-row">
-    <div class="form-group col-lg-6 offset-lg-3">
+    <div class="form-group col-lg-6 offset-lg-3 mt-5">
       <button type="submit" class="btn btn-lg btn-block btn-success">Save</button>
     </div>
   </div>
