@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { ErrorService } from "../error/error.service";
 
 import { Alert } from "../../model/alert.interface";
@@ -17,61 +17,68 @@ import * as STORAGEKEYS from "../auth/storage-keys";
   providedIn: 'root'
 })
 export class AccountService {
+  private accounts: Account[] = [];
 
-
-  private accounts: Account[];
+  @Output() accountsChanged: EventEmitter<Account[]> = new EventEmitter();
 
   constructor(public errorservice: ErrorService, private authService: AuthService, private http: HttpClient) { }
 
-  createAccount(): Observable<Account> {
+  createAccount() {
     let user = this.authService.getAuthorizedUser();
 
-    return this.http.post<Account>(environment.apiUrl + "/account/create",
+    this.http.post<Account>(environment.apiUrl + "/account/create",
     new Account(
       new BudgetAccount("something", "something else", "something trice"),
       new BankAccount("bank nickname", "bank name", "account namess")
       , user._id, "now?", "My account")
-    );
+    ).subscribe(
+      (account) => {
+        this.accounts.push(account);
+      });
   }
 
 
-  getAccounts(): Observable<Account[]> {
+  getAccounts() {
 
     const user: User = this.authService.getAuthorizedUser();
+
     if(user) {
       /*  TEST */
       const headers = new HttpHeaders();
       headers.append('Content-Type', 'application/json');
 
-      const params = new HttpParams().set("owner_id", user._id); // Create new HttpParams
-      this.http.get("/url", {headers: headers, params: params});
+      const params = new HttpParams().set("owner_id", user._id);
+
       /* No need to use .map(res => res.json()) anymore */
-      return this.http.get<Account[]>(environment.apiUrl + "/account/getall", {headers: headers, params: params});
+      this.http.get<Account[]>(environment.apiUrl + "/account/getall", {headers: headers, params: params})
+      .subscribe((accounts: Account[]) => {
+        this.accounts = accounts;
+        this.errorservice.tellError({type: "success", message: "Retrieved " + accounts.length + " Accounts!"});
+        this.accountsChanged.emit(this.accounts);
+      });
 
     } else {
       // On no user found
       this.errorservice.tellError({type: "warning", message: "User not authorized!"});
     }
-
-    return new Observable<Account[]>();
   }
 
 
   edit(sync_id: string) {
     this.errorservice.tellError({type: "success", message: "accountservice.edit() works! Sync_id: " + sync_id});
   }
-  remove(sync_id: string) {
 
-  }
-
-  delete( account: Account ): Observable<Account>
+  delete( account: Account )
   {
-    this.errorservice.tellError({type: "success", message: "Deleted Account with _id: " + account._id});
 
-    let user = this.authService.getAuthorizedUser();
 
-    return this.http.post<Account>(environment.apiUrl + "/account/delete",
+    this.http.post<Account>(environment.apiUrl + "/account/delete",
       account
-    );
+    ).subscribe(
+      (deletedAccount: Account) => {
+        this.errorservice.tellError({type: "success", message: "Deleted " + account.nickName + " ID: " + account._id});
+        this.accounts = this.accounts.filter(acc => acc._id !== deletedAccount._id);
+        this.accountsChanged.emit(this.accounts);
+      });
   }
 }

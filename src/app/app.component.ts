@@ -9,16 +9,31 @@ import { Router } from "@angular/router";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  alertsEnabled: boolean;
 
   constructor(public errorService: ErrorService, public authService: AuthService, public router: Router) {
 
   }
 
-  // temporary code for alert
-  alert: boolean;
+  ngOnInit(): void {
+    // if empty
+    if(localStorage.getItem("alertsEnabled")){
+      this.alertsEnabled = true;
+    } else {
+      this.alertsEnabled = Boolean(localStorage.getItem("alertsEnabled"));
+    }
+  }
 
-  close(): void {
-    this.alert = false;
+
+
+  toggleAlerts(): string {
+    this.alertsEnabled = !this.alertsEnabled;
+    localStorage.setItem("alertsEnabled", this.alertsEnabled + "");
+    if(this.alertsEnabled){
+        return "ALERTS: ON ";
+      } else {
+        return "ALERTS: OFF";
+      }
   }
 
   logOut() {

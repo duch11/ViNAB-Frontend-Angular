@@ -17,20 +17,15 @@ export class DashboardComponent implements OnInit {
   constructor(private accountService: AccountService) { }
 
   ngOnInit() {
-    this.accountService.getAccounts()
-    .subscribe(
-      (accounts: Account[]) => {
-        this.accounts = accounts;
-      }
-    );
+    this.accountService.getAccounts();
+    this.accountService.accountsChanged.subscribe((newAccounts: Account[]) => {
+      this.accounts = newAccounts;
+    });
   }
 
   // Referenced in HTML
   addAccount() {
-    this.accountService.createAccount().subscribe(
-      (account) => {
-        this.accounts.push(account);
-      });
+    this.accountService.createAccount();
   }
 
 
