@@ -21,6 +21,7 @@ export class AuthGuard implements CanActivate {
     // if not destination not empty, giv it's value
     if (next.url.toString()) {
       urlDestination = next.url.toString();
+      console.log(urlDestination);
     } else {
       urlDestination = "";
     }

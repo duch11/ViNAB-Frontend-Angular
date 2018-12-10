@@ -1,6 +1,6 @@
-import { Account } from "./account";
-import { BudgetAccount } from "./budgetAccount";
-import { BankAccount } from "./bankAccount";
+import { Account } from "./account.interface";
+import { BudgetAccount } from "./budgetAccount.interface";
+import { BankAccount } from "./bankAccount.interface";
 export class User {
     _id: string;
     email: string;

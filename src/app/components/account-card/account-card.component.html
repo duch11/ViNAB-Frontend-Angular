@@ -1,4 +1,4 @@
-<div class="card shadow">
+<div *ngIf="account" class="card shadow">
   <form class="card-body align-middle">
     <h3 class="card-title display-4">{{account.nickName}}</h3>
   </form>
@@ -11,7 +11,7 @@
     </li>
   </ul>
   <div class="card-body  d-flex justify-content-between">
-    <a (click)="edit()" class="btn btn-lg btn-warning" role="button">Edit Connection</a>
+    <a (click)="edit(account)" class="btn btn-lg btn-warning" role="button">Edit Connection</a>
     <a (click)="delete(account)" class="btn btn-lg btn-danger" role="button">Delete Connection</a>
   </div>
 </div>
